@@ -12,16 +12,22 @@ router.get('/:id*?', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/', (req, res, next) => {
-  User
-    .create(req.body)
-    .then(user => res.json(user))
-    .catch(next);
+router.post('/', async (req, res, next) => {
+
+  try {
+    console.log(req.body)
+    let user = await User.create(req.body);
+    return res.send({ user })
+
+  } catch (error) {
+
+    return res.send({ error })
+  }
 });
 
 router.put('/:id', function (req, res, next) {
   User
-    .findOneAndUpdate({ _id: req.params.id }, req.body, {new: true}, (error, result) => res.json(result))
+    .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (error, result) => res.json(result))
     .catch(next);
 });
 
