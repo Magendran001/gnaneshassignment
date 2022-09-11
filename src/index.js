@@ -22,7 +22,7 @@ app.use(express.json())
 // }
 
 //MongoDB configurations
-const connect = mongoose.connect("mongodb+srv://donorbuddy:donorbuddy@cluster0.ftqkwbu.mongodb.net/?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+const connect = mongoose.connect("mongodb+srv://donorbuddy:donorbuddy@cluster0.ftqkwbu.mongodb.net/?retryWrites=true&w=majority");
 // mongoose.set('useFindAndModify', false);
 
 // Routes
