@@ -16,6 +16,33 @@ router.post('/', async (req, res, next) => {
 
   try {
     console.log(req.body)
+
+    let user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+
+      return res.status(400).send({ message: "Kindly Regeister First" })
+
+    }
+
+    if (user.password != req.body.password)
+      return res.status(400).send({ message: "Invalid Password" })
+
+    console.log(user)
+    return res.send({ user })
+
+  } catch (error) {
+
+    return res.send({ error })
+  }
+});
+
+
+router.post('/', async (req, res, next) => {
+
+  try {
+    console.log(req.body)
+
     let user = await User.create(req.body);
     return res.send({ user })
 
